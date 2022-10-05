@@ -1,7 +1,7 @@
 import { Body, Controller, Post, Ip } from '@nestjs/common';
-import { PingDto } from './dto';
 import { PingService } from './ping.service';
 import { LogService } from '../log/log.service';
+import { PingDto, PingOutputDTO } from './dto';
 
 @Controller('ping')
 export class PingController {
@@ -11,7 +11,10 @@ export class PingController {
   ) {}
 
   @Post()
-  async checkIp(@Body() dto: PingDto, @Ip() ip: string) {
+  async checkIp(
+    @Body() dto: PingDto,
+    @Ip() ip: string,
+  ): Promise<PingOutputDTO> {
     const res = await this.pingService.checkIp(ip);
     this.logService.sendLog({ ...dto, ...res });
     return res;
