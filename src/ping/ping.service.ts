@@ -8,9 +8,7 @@ export class PingService {
   }
 
   private async validateIp(ip: string): Promise<boolean> {
-    console.log(ip);
     const ipData = await lookup(ip);
-    console.log(ipData);
-    return true;
+    return ipData.country === 'RU';
   }
 }

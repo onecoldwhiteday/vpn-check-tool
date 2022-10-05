@@ -6,7 +6,7 @@ import { LogModule } from './log/log.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }), // TODO: use for .env configs
+    ConfigModule.forRoot({ isGlobal: true }),
     AuthModule,
     PingModule,
     LogModule,
