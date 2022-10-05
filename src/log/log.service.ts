@@ -11,15 +11,22 @@ export class LogService {
   ) {}
 
   async sendLog(logData: Partial<IConnectionLog>) {
-    const log = {
-      ...logData,
-      createdAt: Date.now().toLocaleString(), // FIXME: Normalize
-    };
+    const log = this.generateLog(logData);
     return this.httpService.post(
       `${this.config.get('WEB_BACK_URL')}/api/projects/${
         logData.projectId
       }/connection-logs`,
       log,
     );
+  }
+
+  private generateLog(logData: Partial<IConnectionLog>): IConnectionLog {
+    return {
+      username: logData.username,
+      projectId: logData.projectId,
+      createdAt: Date.now().toLocaleString(), // FIXME: change format(?)
+      ip: logData.ip,
+      isRussian: logData.isRussian,
+    };
   }
 }

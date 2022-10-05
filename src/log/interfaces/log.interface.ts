@@ -3,5 +3,5 @@ export interface IConnectionLog {
   projectId: string;
   createdAt: string;
   ip: string;
-  ipRussian: boolean;
+  isRussian: boolean;
 }

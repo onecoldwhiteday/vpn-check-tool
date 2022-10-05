@@ -12,11 +12,11 @@ export class PingController {
 
   @Post()
   async checkIp(
-    @Body() dto: PingDto,
+    @Body() body: PingDto,
     @Ip() ip: string,
   ): Promise<PingOutputDTO> {
     const res = await this.pingService.checkIp(ip);
-    this.logService.sendLog({ ...dto, ...res });
+    this.logService.sendLog({ ...body, ...res });
     return res;
   }
 }

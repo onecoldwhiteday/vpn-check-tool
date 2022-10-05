@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { lookup } from 'fast-geoip';
+import { PingOutputDTO } from './dto';
 @Injectable()
 export class PingService {
-  async checkIp(ip: string): Promise<{ ip: string; isRussian: boolean }> {
+  async checkIp(ip: string): Promise<PingOutputDTO> {
     const isRussian = await this.validateIp(ip);
     return { ip, isRussian };
   }
