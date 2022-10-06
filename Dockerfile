@@ -1,13 +1,14 @@
-FROM node:18
+FROM node:16-buster as base
 
-WORKDIR /usr/src/app
+WORKDIR /home/node/app
+ADD package*.json .
 
-COPY package*.json ./
-
-RUN npm install
+RUN yarn
 
 COPY . .
 
-RUN npm run build
+FROM base as production
 
-CMD [ "node", "dist/main.js" ]
+ENV NODE_PATH=./build
+
+RUN npm run build
