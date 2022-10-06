@@ -12,16 +12,17 @@ export class LogService {
 
   async sendLog(logData: Partial<ConnectionLogDTO>) {
     const log = this.generateLog(logData);
-    return this.httpService.post(
-      `${this.config.get('WEB_BACK_URL')}/api/projects/connection-logs`,
-      log,
-    );
+    const url = `${this.config.get(
+      'WEB_BACK_URL',
+    )}/api/projects/connection-logs`;
+    return this.httpService.post(url, log);
   }
 
   private generateLog(logData: Partial<ConnectionLogDTO>): ConnectionLogDTO {
+    const createdAt = Date.now().toLocaleString();
     return {
       username: logData.username,
-      createdAt: Date.now().toLocaleString(),
+      createdAt,
       ip: logData.ip,
       isRussian: logData.isRussian,
     };

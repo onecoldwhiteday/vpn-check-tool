@@ -12,12 +12,8 @@ export class AuthService {
   ) {}
 
   async login(dto: AuthDto): Promise<AuthOutputDTO> {
-    const res = await firstValueFrom(
-      this.httpService.post(
-        `${this.config.get('WEB_BACK_URL')}/api/login_check`,
-        dto,
-      ),
-    );
-    return res.data;
+    const url = `${this.config.get('WEB_BACK_URL')}/api/login_check`;
+    const { data } = await firstValueFrom(this.httpService.post(url, dto));
+    return data;
   }
 }
