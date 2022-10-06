@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { IConnectionLog } from './interfaces/log.interface';
 import { ConfigService } from '@nestjs/config';
+import { ConnectionLogDTO } from './dto';
 
 @Injectable()
 export class LogService {
@@ -10,7 +10,7 @@ export class LogService {
     private readonly httpService: HttpService,
   ) {}
 
-  async sendLog(logData: Partial<IConnectionLog>) {
+  async sendLog(logData: Partial<ConnectionLogDTO>) {
     const log = this.generateLog(logData);
     return this.httpService.post(
       `${this.config.get('WEB_BACK_URL')}/api/projects/connection-logs`,
@@ -18,10 +18,10 @@ export class LogService {
     );
   }
 
-  private generateLog(logData: Partial<IConnectionLog>): IConnectionLog {
+  private generateLog(logData: Partial<ConnectionLogDTO>): ConnectionLogDTO {
     return {
       username: logData.username,
-      createdAt: Date.now().toLocaleString(), // FIXME: change format(?)
+      createdAt: Date.now().toLocaleString(),
       ip: logData.ip,
       isRussian: logData.isRussian,
     };
