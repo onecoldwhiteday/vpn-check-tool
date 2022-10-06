@@ -1,14 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class PingDto {
   @IsEmail()
   @IsNotEmpty()
   @ApiProperty()
   username: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty()
-  projectId: string;
 }
