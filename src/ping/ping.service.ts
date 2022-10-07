@@ -1,15 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { lookup } from 'fast-geoip';
 import { PingOutputDTO } from './dto';
+import { CountryCode } from '../common/enums/country-code';
+
 @Injectable()
 export class PingService {
   async checkIp(ip: string): Promise<PingOutputDTO> {
-    const isRussian = await this.validateIp(ip);
-    return { ip, isRussian };
-  }
-
-  private async validateIp(ip: string): Promise<boolean> {
     const ipData = await lookup(ip);
-    return ipData.country === 'RU';
+    const isRussian = ipData.country === CountryCode.RU;
+    return { ip, isRussian };
   }
 }
