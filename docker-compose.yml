@@ -10,10 +10,10 @@ services:
     environment:
       NODE_ENV: 'development'
       WEB_BACK_URL: ${WEB_BACK_URL}
+    volumes:
+      - .:/usr/src/app
     env_file:
       - .env
-    expose:
-      - '8081'
     ports:
       - '8081:8081'
     command: >
