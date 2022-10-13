@@ -16,5 +16,4 @@ services:
       - .:/usr/src/app
     env_file:
       - .env
-    command: >
-      bash -c "npm run start:${NODE_ENV}"
+    command: npm run start:${NODE_ENV}
