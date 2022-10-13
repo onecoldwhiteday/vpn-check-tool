@@ -19,6 +19,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/doc', app, document);
 
-  await app.listen(8081);
+  const port = 8081;
+  await app.listen(port, () =>
+    console.log(`Desktop backend is listening on port ${port}`),
+  );
 }
 bootstrap();
