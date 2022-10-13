@@ -10,11 +10,11 @@ services:
     environment:
       NODE_ENV: 'dev'
       WEB_BACK_URL: ${WEB_BACK_URL}
+    ports:
+      - '8081:8081'
     volumes:
       - .:/usr/src/app
     env_file:
       - .env
-    ports:
-      - '8081:8081'
     command: >
       bash -c "npm run start:${NODE_ENV}"
