@@ -8,12 +8,10 @@ services:
       target: base
     container_name: vpn-check-tool-desktop-bakend
     environment:
-      NODE_ENV: dev
+      NODE_ENV: ${NODE_ENV}
       WEB_BACK_URL: ${WEB_BACK_URL}
-    volumes:
-      - .:/usr/src/app
     env_file:
       - .env
-    command: npm run start:dev
     ports:
-      - '8081:8081'
+      - "8081:8081"
+    command: npm run start:${NODE_ENV}
