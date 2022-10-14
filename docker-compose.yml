@@ -6,14 +6,11 @@ services:
       context: .
       dockerfile: Dockerfile
       target: base
-    volumes:
-      - .:/usr/src/app
     container_name: vpn-check-tool-desktop-bakend
     environment:
       NODE_ENV: ${NODE_ENV}
       WEB_BACK_URL: ${WEB_BACK_URL}
-    env_file:
-      - .env
+    env_file: .env
     ports:
       - '8081:8081'
     command: npm run start:${NODE_ENV}
