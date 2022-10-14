@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: base
+    volumes:
+      - .:/usr/src/app
     container_name: vpn-check-tool-desktop-bakend
     environment:
       NODE_ENV: ${NODE_ENV}
