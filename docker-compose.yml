@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: base
-    container_name: vpn-check-tool-desk-bakend
+    container_name: vpn-check-tool-desktop-bakend
     environment:
       NODE_ENV: ${NODE_ENV}
       WEB_BACK_URL: ${WEB_BACK_URL}
