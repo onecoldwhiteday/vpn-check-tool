@@ -14,5 +14,4 @@ services:
       - .env
     ports:
       - "8081:8081"
-    command: >
-      bash -c "npm run start:dev"
+    command: npm run start:dev
