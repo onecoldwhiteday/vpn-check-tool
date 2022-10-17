@@ -8,12 +8,12 @@ export class LogService {
   constructor(
     private config: ConfigService,
     private readonly httpService: HttpService,
-  ) {}
+  ) { }
 
-  async sendLog(logData: Partial<ConnectionLogDTO>) {
+  async sendLog(logData: Partial<ConnectionLogDTO>, headers: Headers) {
     const log = LogService.generateLog(logData);
     const url = `${this.config.get('WEB_BACK_URL')}/api/connection-logs`;
-    return this.httpService.post(url, log);
+    return this.httpService.post(url, log, { headers: { "Authorization": headers["Authorization"] } });
   }
 
   private static generateLog(

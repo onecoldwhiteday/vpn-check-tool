@@ -4,7 +4,7 @@ import { AuthDto, AuthOutputDTO } from './dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   @Post('login')
   login(@Body() body: AuthDto): Promise<AuthOutputDTO> {

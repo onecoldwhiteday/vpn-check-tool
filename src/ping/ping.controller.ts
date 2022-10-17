@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Ip } from '@nestjs/common';
+import { Body, Controller, Post, Ip, Headers } from '@nestjs/common';
 import { PingService } from './ping.service';
 import { LogService } from '../log/log.service';
 import { PingDto, PingOutputDTO } from './dto';
@@ -8,15 +8,16 @@ export class PingController {
   constructor(
     private pingService: PingService,
     private logService: LogService,
-  ) {}
+  ) { }
 
   @Post()
   async checkIp(
     @Body() body: PingDto,
     @Ip() ip: string,
+    @Headers() headers: Headers
   ): Promise<PingOutputDTO> {
     const res = await this.pingService.checkIp(ip);
-    this.logService.sendLog({ ...body, ...res });
+    this.logService.sendLog({ ...body, ...res }, headers);
     return res;
   }
 }

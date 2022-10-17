@@ -5,12 +5,14 @@ import {
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as morgan from 'morgan';
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
   );
   app.enableCors({ origin: true });
+  app.use(morgan('tiny'));
   const config = new DocumentBuilder()
     .setTitle('VPN Check Tool Desktop Back')
     .setDescription('Desktop Back API description')

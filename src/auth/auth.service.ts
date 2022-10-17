@@ -9,11 +9,11 @@ export class AuthService {
   constructor(
     private config: ConfigService,
     private readonly httpService: HttpService,
-  ) {}
+  ) { }
 
-  async login(dto: AuthDto): Promise<AuthOutputDTO> {
+  async login(authInput: AuthDto): Promise<AuthOutputDTO> {
     const url = `${this.config.get('WEB_BACK_URL')}/api/login_check`;
-    const { data } = await firstValueFrom(this.httpService.post(url, dto));
+    const { data } = await firstValueFrom(this.httpService.post(url, authInput));
     return data;
   }
 }
