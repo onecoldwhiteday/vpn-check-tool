@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
-  NestFastifyApplication,
+  NestFastifyApplication
 } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
@@ -10,7 +10,7 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
-
+  app.enableCors({ origin: true });
   const config = new DocumentBuilder()
     .setTitle('VPN Check Tool Desktop Back')
     .setDescription('Desktop Back API description')

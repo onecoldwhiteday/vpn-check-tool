@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { PingModule } from './ping/ping.module';
-import { LogModule } from './log/log.module';
 import { IpCheckerModule } from './ip-checker/ip-checker.module';
+import { LogModule } from './log/log.module';
+import { PingModule } from './ping/ping.module';
 
 @Module({
   imports: [
@@ -14,4 +14,4 @@ import { IpCheckerModule } from './ip-checker/ip-checker.module';
     IpCheckerModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }

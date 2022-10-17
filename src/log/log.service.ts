@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ConnectionLogDTO } from './dto';
 
@@ -8,7 +8,7 @@ export class LogService {
   constructor(
     private config: ConfigService,
     private readonly httpService: HttpService,
-  ) {}
+  ) { }
 
   async sendLog(logData: Partial<ConnectionLogDTO>) {
     const log = this.generateLog(logData);
