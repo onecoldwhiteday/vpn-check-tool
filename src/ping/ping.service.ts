@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { lookup } from 'fast-geoip';
 import { PingOutputDTO } from './dto';
-import { CountryCode } from '../common/enums/country-code';
+import { CountryCode } from '../common';
 
 @Injectable()
 export class PingService {

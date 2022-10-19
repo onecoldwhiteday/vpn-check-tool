@@ -1,8 +1,10 @@
-import { Body, Controller, Post, Ip, Headers } from '@nestjs/common';
+import {Body, Controller, Post, Ip, Headers, UseInterceptors} from '@nestjs/common';
 import { PingService } from './ping.service';
 import { LogService } from '../log/log.service';
 import { PingDto, PingOutputDTO } from './dto';
+import {ExceptionInterceptor} from "../common";
 
+@UseInterceptors(ExceptionInterceptor)
 @Controller('ping')
 export class PingController {
   constructor(
