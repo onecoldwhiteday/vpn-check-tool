@@ -1,8 +1,10 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, UseInterceptors } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ExceptionInterceptor } from 'src/common/interceptors';
 import { ConnectionLogDTO } from './dto';
 
+@UseInterceptors(ExceptionInterceptor)
 @Injectable()
 export class LogService {
   constructor(

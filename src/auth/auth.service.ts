@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 import { AuthDto, AuthOutputDTO } from './dto';
@@ -13,7 +13,7 @@ export class AuthService {
 
   async login(authInput: AuthDto): Promise<AuthOutputDTO> {
     const url = `${this.config.get('WEB_BACK_URL')}/api/login_check`;
-    const { data } = await firstValueFrom(this.httpService.post(url, authInput));
-    return data;
+    const res = await firstValueFrom(this.httpService.post(url, authInput));
+    return res.data;
   }
 }
