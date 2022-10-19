@@ -1,4 +1,4 @@
-import { BadRequestException, CallHandler, ExecutionContext, ForbiddenException, Injectable, NestInterceptor, NotFoundException } from "@nestjs/common";
+import { BadRequestException, CallHandler, ExecutionContext, ForbiddenException, Injectable, NestInterceptor, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Observable, tap } from "rxjs";
 
 @Injectable()
@@ -16,6 +16,9 @@ export class ExceptionInterceptor implements NestInterceptor {
               throw new NotFoundException(message);
             }
             if (code === 401) {
+              throw new UnauthorizedException(message);
+            }
+            if (code === 403) {
               throw new ForbiddenException(message);
             }
           }
