@@ -13,9 +13,9 @@ import { FastGeoIpCheckerService } from '../ip-checker/fast-geo-ip-checker.servi
     LogService,
     {
       provide: IpCheckerService,
-      useValue: FastGeoIpCheckerService,
+      useClass: FastGeoIpCheckerService,
     },
   ],
   controllers: [PingController],
 })
-export class PingModule {}
+export class PingModule { }

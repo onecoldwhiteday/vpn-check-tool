@@ -7,8 +7,9 @@ export class ExceptionInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap({
         error: (error) => {
-          const { code, message } = error.response?.data;
-          if (code && message) {
+          if (error.response && error.response.data) {
+            const { code, message } = error.response.data;
+
             if (code === 400) {
               throw new BadRequestException(message);
             }
